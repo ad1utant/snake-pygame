@@ -34,7 +34,7 @@ pygame.time.set_timer(snake_move,200)
 fruit_group = pygame.sprite.Group()
 fruit_group.add(fruit)
 body_group = pygame.sprite.Group()
-direction_list = [(-100,0),(-100,0)]
+direction_list = []
 while running:
     key_pressed = pygame.key.get_pressed()
     for event in pygame.event.get():
@@ -45,21 +45,23 @@ while running:
                 running = False
         if event.type == snake_move:
             player.update(key_pressed)
-            direction_list.insert(0,(player.rect.x,player.rect.y))
-    if len(direction_list) > counter.value + 2:
+            if player.direction != '':
+                direction_list.insert(0,(player.rect.x,player.rect.y))
+    if len(direction_list) > counter.value + 1:
         direction_list.pop()
-
+    print(direction_list)
     player.check_move(key_pressed)
     fruit.check(player,fruit_group,counter)
     border.check(player)
     layout.update(screen)
     board.loop(screen)
     screen.blit(player.surf, player.rect)
-    body.render(direction_list, screen, counter)
+    body.render(direction_list, screen, player)
     screen.blit(fruit.surf, fruit.rect)
     counter.update(screen)
     greeting.update(screen, player)
     pygame.display.flip()
     clock.tick(30)
+
 pygame.quit()
 
