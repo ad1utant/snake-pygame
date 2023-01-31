@@ -9,6 +9,10 @@ class Body(pygame.sprite.Sprite):
         for i in range(1,len(direction_list)):
             self.rect.x = direction_list[i][0]
             self.rect.y = direction_list[i][1]
+            if i % 2:
+                self.surf.fill((0, 178, 246))
+            else:
+                self.surf.fill([0, 172, 242])
             if (self.rect.x,self.rect.y) == (player.rect.x,player.rect.y):
                 exit()
             screen.blit(self.surf,self.rect)

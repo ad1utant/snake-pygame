@@ -3,7 +3,7 @@ class Counter():
     def __init__(self):
         super(Counter, self).__init__()
         pygame.font.init()
-        self.font = pygame.font.Font("font.ttf", 150)
+        self.font = pygame.font.Font("fonts/font.ttf", 150)
         self.value = 0
         self.surf = self.font.render(str(self.value),True,[255,255,255],None)
         self.surf.set_alpha(110)
