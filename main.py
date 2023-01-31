@@ -16,6 +16,7 @@ K_RIGHT
 )
 #deafults variables
 pygame.init()
+direction_list = []
 screen = pygame.display.set_mode([700,700])
 clock = pygame.time.Clock()
 greeting = Greeting()
@@ -23,7 +24,7 @@ layout = Layout()
 player = Player()
 border = Border()
 board = Board()
-fruit = Fruit(screen,player)
+fruit = Fruit(screen,player,direction_list)
 counter = Counter()
 running = True
 body = Body()
@@ -34,7 +35,7 @@ pygame.time.set_timer(snake_move,200)
 fruit_group = pygame.sprite.Group()
 fruit_group.add(fruit)
 body_group = pygame.sprite.Group()
-direction_list = []
+
 while running:
     key_pressed = pygame.key.get_pressed()
     for event in pygame.event.get():
@@ -51,7 +52,7 @@ while running:
         direction_list.pop()
     print(direction_list)
     player.check_move(key_pressed)
-    fruit.check(player,fruit_group,counter)
+    fruit.check(player,fruit_group,counter,direction_list)
     border.check(player)
     layout.update(screen)
     board.loop(screen)
