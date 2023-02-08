@@ -50,15 +50,12 @@ while running:
         if event.type == snake_move:
             player.update(key_pressed)
             border.check(player, finish, counter)
-
-
             if player.direction == 'start' or player.direction == 'finish':
                 pass
             else:
                 direction_list.insert(0,(player.rect.x,player.rect.y))
                 if len(direction_list) > counter.value + 1:
                     direction_list.pop()
-
     print(player.direction,direction_list)
     player.check_move(key_pressed)
     fruit.check(player,fruit_group,counter,direction_list)

@@ -8,6 +8,7 @@ class Fruit(pygame.sprite.Sprite):
         super(Fruit, self).__init__()
         self.surf = pygame.Surface([50,50])
         self.surf.fill([255,0,0])
+        self.surf = pygame.image.load('graphics/apple.png')
         self.rect = self.surf.get_rect(center = (-100,-100))
         self.spawn(direction_list)
     def spawn(self,direction_list):
