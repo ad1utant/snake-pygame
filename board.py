@@ -30,16 +30,16 @@ class Layout(pygame.sprite.Sprite):
         screen.fill((79, 138, 63))
         screen.blit(self.surf,self.rect)
 class Border():
-    def check(self,player):
+    def check(self,player,finish,counter):
         if player.rect.y < 25:
             player.rect.move_ip(0,50)
-            exit()
+            finish.finish(counter,player)
         if player.rect.y > 650:
             player.rect.move_ip(0,-50)
-            exit()
+            finish.finish(counter,player)
         if player.rect.x > 650:
             player.rect.move_ip(-50,0)
-            exit()
+            finish.finish(counter,player)
         if player.rect.x < 25:
             player.rect.move_ip(50,0)
-            exit()
+            finish.finish(counter,player)

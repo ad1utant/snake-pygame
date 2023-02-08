@@ -6,7 +6,9 @@ from player import Player
 from board import Board,Border,Layout
 from greeting import Greeting
 from body import Body
+from finish import *
 from pygame.locals import (
+
 K_ESCAPE,
 KEYDOWN,
 K_UP,
@@ -28,6 +30,7 @@ fruit = Fruit(screen,player,direction_list)
 counter = Counter()
 running = True
 body = Body()
+finish = Finish()
 snake_move = pygame.USEREVENT + 1
 pygame.time.set_timer(snake_move,200)
 
@@ -46,21 +49,29 @@ while running:
                 running = False
         if event.type == snake_move:
             player.update(key_pressed)
-            if player.direction != '':
+            border.check(player, finish, counter)
+
+
+            if player.direction == 'start' or player.direction == 'finish':
+                pass
+            else:
                 direction_list.insert(0,(player.rect.x,player.rect.y))
-    if len(direction_list) > counter.value + 1:
-        direction_list.pop()
-    print(direction_list)
+                if len(direction_list) > counter.value + 1:
+                    direction_list.pop()
+
+    print(player.direction,direction_list)
     player.check_move(key_pressed)
     fruit.check(player,fruit_group,counter,direction_list)
-    border.check(player)
+
     layout.update(screen)
     board.loop(screen)
-    screen.blit(player.surf, player.rect)
-    body.render(direction_list, screen, player)
+    body.render(direction_list, screen, player,finish,counter)
     screen.blit(fruit.surf, fruit.rect)
-    counter.update(screen)
+
+    screen.blit(player.surf, player.rect)
     greeting.update(screen, player)
+    counter.update(screen)
+    finish.check(screen)
     pygame.display.flip()
     clock.tick(30)
 
