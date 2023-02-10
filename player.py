@@ -14,7 +14,7 @@ class Player(pygame.sprite.Sprite):
         self.surf.fill((255,255,255))
         self.surf = pygame.image.load('graphics/head_down.png')
         self.rect = self.surf.get_rect(center=(350,350))
-        self.direction = 'start'
+        self.direction = ''
     def check_move(self,key_pressed):
         if self.direction != 'finish':
             if key_pressed[K_UP] and self.direction != 'down':

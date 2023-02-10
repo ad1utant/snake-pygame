@@ -20,6 +20,7 @@ K_RIGHT
 #deafults variables
 pygame.init()
 direction_list = []
+totaldo = [0]
 screen = pygame.display.set_mode([700,700])
 clock = pygame.time.Clock()
 greeting = Greeting()
@@ -31,15 +32,12 @@ fruit = Fruit(screen,player,direction_list)
 counter = Counter()
 running = True
 body = Body()
-finish = Finish()
+finish = Finish(totaldo)
 snake_move = pygame.USEREVENT + 1
 pygame.time.set_timer(snake_move,200)
-
-
 fruit_group = pygame.sprite.Group()
 fruit_group.add(fruit)
 body_group = pygame.sprite.Group()
-
 while running:
     key_pressed = pygame.key.get_pressed()
     for event in pygame.event.get():
@@ -50,27 +48,26 @@ while running:
                 running = False
         if event.type == snake_move:
             player.update(key_pressed)
-            border.check(player, finish, counter)
+            border.check(player, finish, counter,totaldo)
             if player.direction == 'start' or player.direction == 'finish':
                 pass
             else:
                 direction_list.insert(0,(player.rect.x,player.rect.y))
                 if len(direction_list) > counter.value + 1:
                     direction_list.pop()
-    print(player.rect.x,player.rect.y,player.direction,direction_list)
+    print(totaldo)
     player.check_move(key_pressed)
     fruit.check(player,fruit_group,counter,direction_list)
 
     layout.update(screen)
     board.loop(screen)
-    body.render(direction_list, screen, player,finish,counter)
+    body.render(direction_list, screen, player,finish,counter,totaldo)
     screen.blit(fruit.surf, fruit.rect)
-
     screen.blit(player.surf, player.rect)
     greeting.update(screen, player)
     counter.update(screen)
     finish.update(screen,player)
-    finish.restart(player,key_pressed,direction_list,counter)
+    finish.restart(player,key_pressed,direction_list,counter,totaldo)
     pygame.display.flip()
     clock.tick(30)
 

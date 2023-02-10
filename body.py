@@ -5,7 +5,7 @@ class Body(pygame.sprite.Sprite):
         self.surf = pygame.Surface([50, 50])
         self.surf.fill([255, 255, 255])
         self.rect = self.surf.get_rect()
-    def render(self,direction_list,screen,player,finish,counter):
+    def render(self,direction_list,screen,player,finish,counter,totaldo):
         for i in range(1,len(direction_list)):
             self.rect.x = direction_list[i][0]
             self.rect.y = direction_list[i][1]
@@ -14,5 +14,5 @@ class Body(pygame.sprite.Sprite):
             else:
                 self.surf.fill([0, 172, 242])
             if (self.rect.x,self.rect.y) == (player.rect.x,player.rect.y):
-                finish.finish(counter,player)
+                finish.finish(counter,player,totaldo)
             screen.blit(self.surf,self.rect)
