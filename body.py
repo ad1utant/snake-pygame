@@ -15,5 +15,4 @@ class Body(pygame.sprite.Sprite):
                 self.surf.fill([0, 172, 242])
             if (self.rect.x,self.rect.y) == (player.rect.x,player.rect.y):
                 finish.finish(counter,player)
-                player.bodycollide()
             screen.blit(self.surf,self.rect)

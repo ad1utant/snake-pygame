@@ -7,8 +7,9 @@ from board import Board,Border,Layout
 from greeting import Greeting
 from body import Body
 from finish import *
-from pygame.locals import (
 
+from pygame.locals import (
+K_SPACE,
 K_ESCAPE,
 KEYDOWN,
 K_UP,
