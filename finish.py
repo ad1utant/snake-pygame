@@ -1,5 +1,5 @@
 import pygame
-
+from pygame.locals import (K_SPACE)
 class Finish():
     def __init__(self):
         self.font = pygame.font.Font("fonts/sofia.ttf", 60)
@@ -28,6 +28,16 @@ class Finish():
         self.surf2.set_alpha(110)
         self.rect = self.surf.get_rect(center=[350,207])
         self.rect2 = self.surf2.get_rect(center=[350,250])
-    def check(self,screen):
-        screen.blit(self.surf,self.rect)
-        screen.blit(self.surf2,self.rect2)
+    def update(self,screen,player):
+        if player.direction == 'finish':
+            screen.blit(self.surf,self.rect)
+            screen.blit(self.surf2,self.rect2)
+    def restart(self,player,key_pressed,direction_list,counter):
+        if player.direction == 'finish':
+            if key_pressed[K_SPACE]:
+                player.surf = pygame.image.load('graphics/head_down.png')
+                counter.value = 0
+                direction_list.clear()
+                player.direction = 'start'
+                player.rect.x = 325
+                player.rect.y = 325

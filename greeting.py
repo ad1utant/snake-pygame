@@ -5,7 +5,6 @@ class Greeting():
         pygame.font.init()
         self.font = pygame.font.Font("fonts/sofia.ttf", 60)
         self.surf = self.font.render('press any arrow to start',True,[255,255,255],None)
-        self.surf.set_alpha(110)
         self.rect = self.surf.get_rect(center=[350,207])
     def update(self,screen,player):
         if player.direction == "start":

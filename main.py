@@ -57,7 +57,7 @@ while running:
                 direction_list.insert(0,(player.rect.x,player.rect.y))
                 if len(direction_list) > counter.value + 1:
                     direction_list.pop()
-    print(player.direction,direction_list)
+    print(player.rect.x,player.rect.y,player.direction,direction_list)
     player.check_move(key_pressed)
     fruit.check(player,fruit_group,counter,direction_list)
 
@@ -69,7 +69,8 @@ while running:
     screen.blit(player.surf, player.rect)
     greeting.update(screen, player)
     counter.update(screen)
-    finish.check(screen)
+    finish.update(screen,player)
+    finish.restart(player,key_pressed,direction_list,counter)
     pygame.display.flip()
     clock.tick(30)
 
