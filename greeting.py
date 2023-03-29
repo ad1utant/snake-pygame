@@ -11,7 +11,7 @@ class Greeting():
         self.rect_arrow_press = self.surf_arrow_press.get_rect(center = [350,250])
         self.surf_arrow_press.set_alpha(110)
         self.surf_welcome = self.font.render('Welcome to SNAKE',True,[255,255,255],None)
-        self.rect_welcome = self.surf_welcome.get_rect(center = [350,207])
+        self.rect_welcome = self.surf_welcome.get_rect(center = [350,207 ])
     def update(self,screen,player):
         if player.direction == "start" or player.direction == '':
             if player.direction == 'start':
