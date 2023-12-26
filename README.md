@@ -1,4 +1,4 @@
-# RAW and JPG sorter
+# SNAKE-PYGAME
 
 Game based on the old good snake. Enjoy!
 
